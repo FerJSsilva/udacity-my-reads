@@ -30,6 +30,7 @@
             }
         ],
         "import/no-named-as-default": 0,
+        "react/jsx-one-expression-per-line": 0,
         "no-console": [
             "error",
             {
