@@ -17,9 +17,9 @@ class Bookshelf extends PureComponent {
   render() {
     const { books, title, changeBookShelf } = this.props;
     const shelf = books.map(
-      (book, index) => (
+      book => (
         <Book
-          key={Number(index)}
+          key={book.id}
           book={book}
           onChangeShelf={changeBookShelf}
         />
