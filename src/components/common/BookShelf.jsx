@@ -6,6 +6,7 @@ class Bookshelf extends PureComponent {
   static propTypes = {
     books: PropTypes.arrayOf(PropTypes.any),
     title: PropTypes.string,
+    changeBookShelf: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
@@ -14,9 +15,15 @@ class Bookshelf extends PureComponent {
   };
 
   render() {
-    const { books, title } = this.props;
+    const { books, title, changeBookShelf } = this.props;
     const shelf = books.map(
-      (book, index) => (<Book book={book} key={Number(index)} />),
+      (book, index) => (
+        <Book
+          key={Number(index)}
+          book={book}
+          onChangeShelf={changeBookShelf}
+        />
+      ),
     );
 
     return (

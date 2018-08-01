@@ -24,6 +24,12 @@ export class App extends Component {
       });
   };
 
+  changeBookShelf = (book, shelf) => {
+    BooksAPI.update(book, shelf).then(() => {
+      this.fetchBookList();
+    });
+  };
+
   render() {
     const { myBooks } = this.state;
     return (
@@ -31,8 +37,8 @@ export class App extends Component {
         <div className="app">
           <div>
             <Switch>
-              <Route exact path="/" render={() => <Booklist myBooks={myBooks} />} />
-              <Route path="/search" render={() => <Booksearch myBooks={myBooks} />} />
+              <Route exact path="/" render={() => <Booklist myBooks={myBooks} changeBookShelf={this.changeBookShelf} />} />
+              <Route path="/search" render={() => <Booksearch myBooks={myBooks} changeBookShelf={this.changeBookShelf} />} />
             </Switch>
           </div>
         </div>

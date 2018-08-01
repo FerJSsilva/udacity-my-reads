@@ -6,6 +6,7 @@ import Bookshelf from '../common/BookShelf';
 class BookList extends Component {
   static propTypes = {
     myBooks: PropTypes.arrayOf(PropTypes.any),
+    changeBookShelf: PropTypes.func.isRequired,
   }
 
   static defaultProps = {
@@ -18,15 +19,16 @@ class BookList extends Component {
   }
 
   render() {
+    const { changeBookShelf } = this.props;
     return (
       <div className="list-books">
         <div className="list-books-title">
           <h1>MyReads</h1>
         </div>
         <div className="list-books-content">
-          <Bookshelf books={this.filterBooks('currentlyReading')} title="Currently Reading" />
-          <Bookshelf books={this.filterBooks('read')} title="Read" />
-          <Bookshelf books={this.filterBooks('wantToRead')} title="Want to Read" />
+          <Bookshelf books={this.filterBooks('currentlyReading')} title="Currently Reading" changeBookShelf={changeBookShelf} />
+          <Bookshelf books={this.filterBooks('read')} title="Read" changeBookShelf={changeBookShelf} />
+          <Bookshelf books={this.filterBooks('wantToRead')} title="Want to Read" changeBookShelf={changeBookShelf} />
           <div className="open-search">
             <Link to="/search">Add a book</Link>
           </div>

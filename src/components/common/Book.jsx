@@ -4,7 +4,14 @@ import { PropTypes } from 'prop-types';
 class Book extends PureComponent {
   static propTypes = {
     book: PropTypes.objectOf(PropTypes.any).isRequired,
+    onChangeShelf: PropTypes.func.isRequired,
   };
+
+  changeShelf = (e) => {
+    const { book, onChangeShelf } = this.props;
+    const shelf = e.target.value;
+    onChangeShelf(book, shelf);
+  }
 
   render() {
     const { book } = this.props;
@@ -22,7 +29,7 @@ class Book extends PureComponent {
               }}
             />
             <div className="book-shelf-changer">
-              <select>
+              <select onChange={this.changeShelf} value={book.shelf}>
                 <option value="none" disabled>Move to...</option>
                 <option value="currentlyReading">Currently Reading</option>
                 <option value="wantToRead">Want to Read</option>
