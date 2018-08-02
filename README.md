@@ -2,6 +2,8 @@
 
 A react bookshelf demonstration - assessment project for Udacity.
 
+It´s possible to see a demo of the project clicking [here](http://good-jelly.surge.sh/).
+
 In this project we have different bookshelfs saying which book the user is currently reading, want to read or it´s already read. Some new features were added beyond specification:
 
 * Loading screen component using only html and css
