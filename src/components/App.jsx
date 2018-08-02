@@ -5,12 +5,14 @@ import * as BooksAPI from '../utils/BooksAPI';
 
 import Booklist from './pages/BookList';
 import Booksearch from './pages/BookSearch';
+import Loading from './common/Loading';
 
 import './App.css';
 
 export class App extends Component {
   state = {
     myBooks: [],
+    isLoading: false,
   }
 
   componentDidMount() {
@@ -18,9 +20,13 @@ export class App extends Component {
   }
 
   fetchBookList = () => {
+    this.setState({ isLoading: true });
     BooksAPI.getAll()
       .then((books) => {
-        this.setState({ myBooks: books });
+        this.setState({
+          myBooks: books,
+          isLoading: false,
+        });
       });
   };
 
@@ -31,10 +37,13 @@ export class App extends Component {
   };
 
   render() {
-    const { myBooks } = this.state;
+    const { myBooks, isLoading } = this.state;
     return (
       <BrowserRouter>
         <div className="app">
+          {
+            isLoading && <Loading />
+          }
           <div>
             <Switch>
               <Route exact path="/" render={() => <Booklist myBooks={myBooks} changeBookShelf={this.changeBookShelf} />} />
