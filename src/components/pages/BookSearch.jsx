@@ -1,10 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { debounce } from 'throttle-debounce';
 import Book from '../common/Book';
 import * as BooksAPI from '../../utils/BooksAPI';
 
 class BookSearch extends Component {
+  searchBooks = debounce(400, (searchParameter) => {
+    if (searchParameter.length > 0) {
+      BooksAPI.search(searchParameter, 10)
+        .then((response) => {
+          if (response.length > 0) {
+            this.setState({
+              books: response,
+            });
+          }
+        });
+    } else {
+      this.setState({
+        books: [],
+      });
+    }
+  });
+
   static propTypes = {
     myBooks: PropTypes.arrayOf(PropTypes.any),
     changeBookShelf: PropTypes.func.isRequired,
@@ -26,23 +44,6 @@ class BookSearch extends Component {
     });
 
     this.searchBooks(searchParameter);
-  }
-
-  searchBooks = (searchParameter) => {
-    if (searchParameter.length > 0) {
-      BooksAPI.search(searchParameter, 10)
-        .then((response) => {
-          if (response.length > 0) {
-            this.setState({
-              books: response,
-            });
-          }
-        });
-    } else {
-      this.setState({
-        books: [],
-      });
-    }
   }
 
   renderBooks = () => {
