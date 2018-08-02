@@ -8,6 +8,10 @@
         "module": true,
         "process": false
     },
+    "env": {
+        "browser": true,
+        "node": true
+    },
     "settings": {
         "import/resolver": {
             "babel-module": {}
