@@ -27,8 +27,8 @@ class BookList extends Component {
         </div>
         <div className="list-books-content">
           <Bookshelf books={this.filterBooks('currentlyReading')} title="Currently Reading" changeBookShelf={changeBookShelf} />
-          <Bookshelf books={this.filterBooks('read')} title="Read" changeBookShelf={changeBookShelf} />
           <Bookshelf books={this.filterBooks('wantToRead')} title="Want to Read" changeBookShelf={changeBookShelf} />
+          <Bookshelf books={this.filterBooks('read')} title="Read" changeBookShelf={changeBookShelf} />
           <div className="open-search">
             <Link to="/search">Add a book</Link>
           </div>
