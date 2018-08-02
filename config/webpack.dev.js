@@ -9,7 +9,7 @@ module.exports = merge (common, {
         historyApiFallback: true,
         overlay: true,
         open: true,
-        noInfo: true
+        stats: 'errors-only'
     },
     module: {
         rules: [
