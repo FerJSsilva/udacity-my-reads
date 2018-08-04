@@ -53,7 +53,7 @@ class BookSearch extends Component {
     const { myBooks, changeBookShelf } = this.props;
 
     return books && books.map((unshelfed) => {
-      const book = unshelfed;
+      const book = { ...unshelfed };
 
       myBooks.forEach((myBook) => {
         if (book.id === myBook.id) {
