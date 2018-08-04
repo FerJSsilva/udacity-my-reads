@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Bookshelf from '../common/BookShelf';
 
-class BookList extends Component {
+class BookList extends PureComponent {
   static propTypes = {
     myBooks: PropTypes.arrayOf(PropTypes.any),
     changeBookShelf: PropTypes.func.isRequired,
